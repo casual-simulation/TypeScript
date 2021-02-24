@@ -2,7 +2,7 @@
     "name": "@casual-simulation/typescript",
     "author": "Casual Simulation Inc.",
     "homepage": "https://www.typescriptlang.org/",
-    "version": "4.2.2",
+    "version": "4.2.3",
     "license": "Apache-2.0",
     "description": "TypeScript but optimized for CasualOS",
     "keywords": [
@@ -20,10 +20,7 @@
     },
     "main": "./lib/typescript.js",
     "typings": "./lib/typescript.d.ts",
-    "bin": {
-        "tsc": "./bin/tsc",
-        "tsserver": "./bin/tsserver"
-    },
+    "bin": {},
     "engines": {
         "node": ">=4.2.0"
     },
