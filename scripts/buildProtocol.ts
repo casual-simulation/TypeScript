@@ -1,6 +1,6 @@
 /// <reference types="node"/>
 
-import * as ts from "../lib/typescript";
+import * as ts from "typescript/lib/typescript";
 import * as path from "path";
 
 function endsWith(s: string, suffix: string) {

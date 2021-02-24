@@ -1,7 +1,7 @@
 // @ts-check
 const stream = require("stream");
 const Vinyl = require("vinyl");
-const ts = require("../../lib/typescript");
+const ts = require("typescript/lib/typescript");
 const fs = require("fs");
 const { base64VLQFormatEncode } = require("./sourcemaps");
 

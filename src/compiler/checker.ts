@@ -39257,17 +39257,21 @@ namespace ts {
                 if (file.redirectInfo) {
                     continue;
                 }
-                if (!isExternalOrCommonJsModule(file)) {
-                    // It is an error for a non-external-module (i.e. script) to declare its own `globalThis`.
-                    // We can't use `builtinGlobals` for this due to synthetic expando-namespace generation in JS files.
-                    const fileGlobalThisSymbol = file.locals!.get("globalThis" as __String);
-                    if (fileGlobalThisSymbol) {
-                        for (const declaration of fileGlobalThisSymbol.declarations) {
-                            diagnostics.add(createDiagnosticForNode(declaration, Diagnostics.Declaration_name_conflicts_with_built_in_global_identifier_0, "globalThis"));
-                        }
-                    }
-                    mergeSymbolTable(globals, file.locals!);
-                }
+
+                // CasualOS CHANGE: All files should be treated as externals.
+                // No global files are allowed in scripts.
+                // if (!isExternalOrCommonJsModule(file)) {
+                //     // It is an error for a non-external-module (i.e. script) to declare its own `globalThis`.
+                //     // We can't use `builtinGlobals` for this due to synthetic expando-namespace generation in JS files.
+                //     const fileGlobalThisSymbol = file.locals!.get("globalThis" as __String);
+                //     if (fileGlobalThisSymbol) {
+                //         for (const declaration of fileGlobalThisSymbol.declarations) {
+                //             diagnostics.add(createDiagnosticForNode(declaration, Diagnostics.Declaration_name_conflicts_with_built_in_global_identifier_0, "globalThis"));
+                //         }
+                //     }
+                //     mergeSymbolTable(globals, file.locals!);
+                // }
+                
                 if (file.jsGlobalAugmentations) {
                     mergeSymbolTable(globals, file.jsGlobalAugmentations);
                 }
