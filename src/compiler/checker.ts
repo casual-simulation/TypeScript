@@ -37795,7 +37795,7 @@ namespace ts {
 
                     switch (location.kind) {
                         case SyntaxKind.SourceFile:
-                            if (!isExternalOrCommonJsModule(<SourceFile>location)) break;
+                            if (!isExternalOrCommonJsModule(<SourceFile>location) && (<SourceFile>location).fileName.endsWith('.d.ts')) break;
                             // falls through
                         case SyntaxKind.ModuleDeclaration:
                             copySymbols(getSymbolOfNode(location as ModuleDeclaration | SourceFile).exports!, meaning & SymbolFlags.ModuleMember);
