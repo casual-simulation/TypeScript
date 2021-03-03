@@ -37795,7 +37795,13 @@ namespace ts {
 
                     switch (location.kind) {
                         case SyntaxKind.SourceFile:
-                            if (!isExternalOrCommonJsModule(<SourceFile>location) && (<SourceFile>location).fileName.endsWith('.d.ts')) break;
+                            if (!isExternalOrCommonJsModule(<SourceFile>location)) {
+                                const file = <SourceFile>location;
+                                if (!file.fileName.endsWith('.d.ts') && file.locals) {
+                                    copySymbols(file.locals, meaning);
+                                }
+                                break;
+                            }
                             // falls through
                         case SyntaxKind.ModuleDeclaration:
                             copySymbols(getSymbolOfNode(location as ModuleDeclaration | SourceFile).exports!, meaning & SymbolFlags.ModuleMember);
