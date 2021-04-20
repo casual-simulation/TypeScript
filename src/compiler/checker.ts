@@ -1404,7 +1404,7 @@ namespace ts {
         }
 
         function isGlobalSourceFile(node: Node) {
-            return node.kind === SyntaxKind.SourceFile && !isExternalOrCommonJsModule(<SourceFile>node);
+            return node.kind === SyntaxKind.SourceFile && !isExternalOrCommonJsModule(<SourceFile>node) && (<SourceFile>node).fileName.endsWith('.d.ts');
         }
 
         function getSymbol(symbols: SymbolTable, name: __String, meaning: SymbolFlags): Symbol | undefined {
